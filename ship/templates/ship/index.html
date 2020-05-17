@@ -1,0 +1,35 @@
+{% extends 'ship/base.html' %}
+{% block index %}
+<h1>GLORY SHIP MANAGEMENT</h1>
+<p>{{ now }}</p>
+
+<table class="table table-bordered table-sm">
+    <thead class="thead.dark">
+        <tr>
+            <th>
+                {% load static %}
+                <img src="{% static 'ship/img/logo.png' %}" alt="glory_logo">
+            </th>
+        {% for ship in ship_list %}
+            <th>{{ ship.name }}</th>
+        {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>MDO</td>
+        {% for mdo in mdo %}
+            <td><a href="{% url 'ship:mdo-update' mdo.pk %}">{{ mdo.quantity }}</a></td>
+        {% endfor %}
+        </tr>
+
+        <tr>
+            <td>FW</td>
+        {% for fw in fw %}
+            <td><a href="{% url 'ship:fw-update' fw.pk %}">{{ fw.quantity }}</a></td>
+        {% endfor %}
+        </tr>
+    </tbody>
+</table>
+<p class="text-sm">Daily data of the ships updated at 09:00 GMT.</p>
+{% endblock %}
